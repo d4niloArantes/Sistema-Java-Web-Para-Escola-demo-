@@ -1,0 +1,64 @@
+<html>
+<head>
+	<link rel="stylesheet" href="estilo/css/bootstrap.css"/>
+	<link rel="stylesheet" href="estilo/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="estilo/css/bootstrap-theme.css"/>
+	<link rel="stylesheet" href="estilo/css/bootstrap-theme.min.css"/>
+</head>
+<body>
+	<div class="container">
+		<div class="panel panel-default">
+			<ul class="nav nav-tabs">
+				<li role="presentation">
+					<a href="/aluno">	
+						<span class="glyphicon glyphicon-user"/>
+						Alunos
+					</a>
+				</li>
+				<li role="presentation">
+					<a href="/matricula">
+						<span class="glyphicon glyphicon-plus"/>
+						Matricular Aluno
+					</a>
+				</li>
+				<li role="presentation">
+					<a href="/disciplina">
+						<span class="glyphicon glyphicon-duplicate"/>
+						Disciplinas
+					</a>
+				</li>
+				<li role="presentation">
+					<a href="/avaliacao">
+						<span class="glyphicon glyphicon-list"/>
+						Avaliações
+					</a>
+				</li>
+			</ul>
+			<h3 class = "list-group-item active">Pontos de avaliações</h3>
+			<div class="panel-body">
+				<form method="post" action="/pontos/save">
+					<div class="form-group">
+						<label for="tipo">Aluno:</label>
+						<select name="aluno">
+							<option th:each="aluno:${alunos}" th:text="${aluno.nome}" th:value="${aluno.id}"/>
+						</select>
+						<label for="av">Avaliação:</label>
+						<select name="avaliacao">
+							<option th:each="avaliacao:${avaliacoes}" th:text="${avaliacao.descricao}" th:value="${avaliacao.id}"/>
+						</select>
+						<label for="nota">Nota:</label>
+						<input type="number" name="pontos" class="form-control" th:value="${ponto.pontos}"/>
+						<input type="hidden" name="idPontosAv" th:value="${ponto.idPontosAv}"/>
+					</div>
+					<button type="submit" class="btn btn-default">Avaliar</button>
+				</form>
+				<dl class="dl-horizontal" th:each="ponto:${pontos}">
+					<dt th:text="${ponto.aluno.nome}"></dt>
+					<dd th:text="${ponto.avaliacao.descricao}"></dd>
+					<dd th:text="${ponto.pontos}"></dd>
+				</dl>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

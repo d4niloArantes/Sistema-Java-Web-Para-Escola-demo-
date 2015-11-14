@@ -1,0 +1,88 @@
+<html>
+<head>
+	<link rel="stylesheet" href="estilo/css/bootstrap.css"/>
+	<link rel="stylesheet" href="estilo/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="estilo/css/bootstrap-theme.css"/>
+	<link rel="stylesheet" href="estilo/css/bootstrap-theme.min.css"/>
+</head>
+<body>
+	<div class="container">
+		<div class="panel panel-default">
+			<ul class="nav nav-tabs">
+				<li role="presentation">
+					<a href="/matricula">
+						<span class="glyphicon glyphicon-plus"/>
+						Matricular Aluno
+					</a>
+				</li>
+				<li role="presentation">
+					<a href="/disciplina">
+						<span class="glyphicon glyphicon-duplicate"/>
+						Disciplinas
+					</a>
+				</li>
+				<li role="presentation">
+					<a href="/avaliacao">
+						<span class="glyphicon glyphicon-list"/>
+						Avaliações
+					</a>
+				</li>
+				<li role="presentation">
+					<a href="/pontos/list">
+						<span class="glyphicon glyphicon-education"/>
+						Avaliar Alunos
+					</a>
+				</li>
+			</ul>
+			<h3 class = "list-group-item active">Alunos</h3>
+			<div class="panel-body">
+				<form class="form" role="form" method="post" action="/aluno/save">
+					<div class="form-group">
+						<label>Nome do Aluno</label> <input type="text" name="nome"
+							class="form-control" placeholder="exemp: Danilo Arantes" th:value="${aluno.nome}"/>
+		
+						<label>E-mail do Aluno</label> <input type="text" name="email"
+							class="form-control" placeholder="exemp: danilo@exemple.com" th:value="${aluno.email}"/>
+						<input type="hidden" name="id" th:value="${aluno.id}"/>
+					</div>
+					<button type="submit" class="btn btn-default">Salvar / Editar</button>
+				</form>		
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Nome</th>
+							<th>E-mail</th>
+							<th>Avaliar</th>
+							<th>Editar</th>
+							<th>Excluir</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="aluno:${alunos}">
+							<td th:text="${aluno.id}"></td>
+							<td th:text="${aluno.nome}"></td>
+							<td th:text="${aluno.email}"></td>
+							<td>
+								<a th:href="@{/pontos(id=${aluno.id})}" class="btn btn-danger">
+									<span class="glyphicon glyphicon-text-background"/>
+								</a>
+							</td>
+							<td>
+								<a th:href="@{/aluno(id=${aluno.id})}" class="btn btn-info">
+									<span class="glyphicon glyphicon-pencil"/>
+								</a>
+							</td>
+							<td>
+								<a th:href="@{/aluno/del(id=${aluno.id})}"  class="btn btn-danger">
+									<span class="glyphicon glyphicon-remove"/>
+								</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
