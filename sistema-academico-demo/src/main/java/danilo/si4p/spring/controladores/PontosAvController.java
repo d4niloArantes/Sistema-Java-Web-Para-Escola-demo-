@@ -12,7 +12,7 @@ import danilo.si4p.spring.repositorios.AvaliacaoRepositorio;
 import danilo.si4p.spring.repositorios.PontosAvRepositorio;
 
 @Controller
-public class PontosAvController 
+public class PontosAvController
 {
 	@Autowired
 	private PontosAvRepositorio pontosRepositorio;
@@ -38,7 +38,7 @@ public class PontosAvController
 		return "PontosAv";
 	}
 	
-	@RequestMapping( value = "/pontos/list"  )
+	@RequestMapping( value = "/pontos2"  )
 	public String avaliaAlunos(Aluno aluno, PontosAv pontos, Avaliacao avaliacao, Model model)
 	{	
 		if(aluno.getId() != null)
@@ -70,6 +70,6 @@ public class PontosAvController
 	public String salvar(PontosAv pontos)
 	{
 		pontosRepositorio.save(pontos);
-		return "redirect:/pontos/list";
+		return "redirect:/pontos2";
 	}
 }

@@ -43,10 +43,6 @@
 						<input type="text" class="form-control" readonly="readonly" th:value="${aluno.nome}"/>
 						<label for="email">Email:</label>
 						<input type="text" class="form-control" readonly="readonly" th:value="${aluno.email}"/>
-						<!--<label for="tipo">Aluno:</label>
-						<select name="aluno">
-							<option readonly="readonly" th:text="${aluno.nome}" th:value="${aluno.id}"/>
-						</select> -->
 						<label for="av">Avaliação:</label>
 						<select name="avaliacao">
 							<option th:each="avaliacao:${avaliacoes}" th:text="${avaliacao.descricao}" th:value="${avaliacao.id}"/>
